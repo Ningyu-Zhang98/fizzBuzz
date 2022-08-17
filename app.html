@@ -52,12 +52,12 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link"  href="index.html"
-                >Home</a
-              >
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="app.html">The App</a>
+              <a class="nav-link active" aria-current="page" href="app.html"
+                >The App</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="code.html">The Code</a>
@@ -73,7 +73,64 @@
       </div>
     </nav>
     <main class="flex-shrink-0">
-      <div class="container"></div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col-md-4 border-2 border-end">
+            <h1 class="display-5">FizzBuzz: A Coding Project</h1>
+            <h4 class="lead">
+              Input two values. Display numbers from 1 to 100 and replace anu
+              number that is the multiple of the first name with Fizz and with
+              the second number Buzz
+            </h4>
+          </div>
+          <div class="col-md-8">
+            <h5>Enter values</h5>
+            <form class="row gx-3 gy-2">
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="firstNumber"
+                  class="form-control"
+                  placeholder="Enter your first number"
+                  aria-label="first number"
+                />
+              </div>
+
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="secondNumber"
+                  class="form-control"
+                  placeholder="Enter your second number"
+                  aria-label="second number"
+                />
+              </div>
+              <div class="col-12 d-flex justify-content-md-end">
+                <button class="btn btn-dark btn-lg" id="btnSubmit" type="button">FizzBuzz</button>
+              </div>
+            </form>
+            <h2 class="mt-5 border-bottom border-2">Results</h2>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm">
+                <tbody id="results">
+                  <!-- Results. Overwrite in javascript -->
+                  <!-- <tr>
+                    <td>3</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>4</td>
+                    </tr> -->
+                </tbody>
+              </table>
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="footer mt-auto py-3 sticky-footer">
@@ -116,11 +173,25 @@
         </div>
       </div>
     </footer>
+
+    <template id="tmpResults">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
     <script src="js/site.js"></script>
+    <script>
+      document.getElementById("btnSubmit").addEventListener('click', getValues)
+    </script>
   </body>
 </html>
