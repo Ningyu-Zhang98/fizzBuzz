@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: A coding Project By John Zhang</title>
+    <title>FizzBuzz: A coding Project By John Zhang</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -24,13 +24,13 @@
 
     <link rel="stylesheet" href="css/site.css" />
     <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-    <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="css/prism.css" />
     <!-- Convert this to an external style sheet -->
   </head>
 
   <body class="d-flex flex-column h-100">
     <!-- Nav section -->
-   <nav class="navbar navbar-expand-md navbar-dark fixed-top"> 
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"
           ><img
@@ -53,14 +53,15 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a
-              >
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="app.html">The App</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
+              <a class="nav-link active" aria-current="page" href="code.html"
+                >The Code</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" target="_blank" href="#">Git Repo</a>
@@ -71,28 +72,113 @@
           </ul>
         </div>
       </div>
-    </nav> 
+    </nav>
 
     <main class="flex-shrink-0">
       <div class="container my-3 py-5 px-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+        <h2 class="border-1 border-bottom border-dark">
+          The Code for FizzBuzz
+        </h2>
         <div class="row row-cols-1 row-cols-md-2">
-            <div class="col-lg-8">
-                <pre class="line-numbers">
+          <div class="col-lg-8">
+            <pre class="line-numbers">
                     <code class="language-javascript dark">
-                        //Call hello world
-                        function HelloWorld(){
-                        alert('hello world');
-                        }
+                      //Get the values from the user
+                      function getValues(){
+                          fNum = document.getElementById("firstNumber").value;
+                          sNum = document.getElementById("secondNumber").value;
+                          fNum = parseInt(fNum)
+                          sNum = parseInt(sNum)
+                          //Generate all of the numbers or FizzBuzz
+                          if (Number.isInteger(fNum) && Number.isInteger(sNum)) {
+                              let generatedList = generateNumbers(fNum, sNum)
+                              //Display the results 
+                              displayNumbers(generatedList)   
+                          }
+                          else {
+                              alert("You must enter an Integer")
+                          }
+                          
+                      }
+                      //Generate all of the numbers
+                      function generateNumbers(n1, n2){
+                          let res = []
+                          for (let num = 1; num <= 100; num++) {
+                              if (num % n1 == 0 && num%n2 == 0){
+                                  res.push('FizzBuzz')
+                              }
+                              else if (num%n1 == 0) {
+                                  res.push('Fizz')
+                              }
+                              else if (num%n2==0) {
+                                  res.push('Buzz')
+                              }
+                              else {
+                                  res.push(num)
+                              }   
+                              
+                          }
+                          return res
+                      }
+                      //Display all of the numbers
+                      function displayNumbers(numList) {
+                      
+                          let tableBody = document.getElementById("results");
+                          let templateRow = document.getElementById("tmpResults")
+                          tableBody.innerHTML = ""
+                          for (let i = 0; i < numList.length; i+=5) {
+                              let tableRow =  document.importNode(templateRow.content, true);
+                              let rowCols = tableRow.querySelectorAll("td");
+                      
+                              rowCols[0].classList.add(numList[i])
+                              rowCols[0].textContent = numList[i]
+                      
+                              rowCols[1].classList.add(numList[i+1])
+                              rowCols[1].textContent = numList[i+1]
+                      
+                              rowCols[2].classList.add(numList[i+2])
+                              rowCols[2].textContent = numList[i+2]
+                      
+                              rowCols[3].classList.add(numList[i+3])
+                              rowCols[3].textContent = numList[i+3]
+                      
+                              rowCols[4].classList.add(numList[i+4])
+                              rowCols[4].textContent = numList[i+4]
+                      
+                              tableBody.appendChild(tableRow)
+                          }
+                      }
                     </code>
                 </pre>
-            </div>
-            <div class="col-lg-4">
-                <p>The code is structure in one fucntion</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of Hello World</p>
-
-            </div>
+          </div>
+          <div class="col-lg-4">
+            <h5>getValues()</h5>
+            <p>
+              getValues() acts as a controller of this application. It first
+              gets the user input from the DOM and then after it made sure the
+              inputs are integers, it would then call generatedList() to get the
+              correct list of numbers and finally call displayNumbers() to
+              display the list in the correct format.
+            </p>
+            <hr />
+            <h5>generatedList()</h5>
+            <p>
+              Here the fucntion would return a list of elements to be displayed.
+              It checks each number from 1 to 100 and to see if it's divisible
+              by input 1 or input 2 respectively. Depends on the results, it
+              would push either the number, "Fizz" or "Buzz" into the result
+              list.
+            </p>
+            <hr />
+            <h5>displayNumbers()</h5>
+            <p>
+              The displayNumbers() fucntion imported a row template defined in
+              the site.js file. It imports the template as a copy and fills it
+              in. How I managed to change the color of Fizz, Buzz and FizzBuzz
+              is through adding a class for each element. In the css file I
+              specified what color each class should appear.
+            </p>
+          </div>
         </div>
       </div>
     </main>
@@ -145,13 +231,12 @@
 
     <script src="js/prism.js"></script>
     <script>
-        Prism.plugins.NormalizeWhitespace.setDefaults({
-            'remove-trailing': true,
-            'remove-indent': true,
-            'left-trim': true,
-            'right-trim': true
-        })
+      Prism.plugins.NormalizeWhitespace.setDefaults({
+        "remove-trailing": true,
+        "remove-indent": true,
+        "left-trim": true,
+        "right-trim": true,
+      });
     </script>
-
   </body>
 </html>

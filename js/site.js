@@ -15,8 +15,7 @@ function getValues(){
     }
     
 }
-
-
+//Generate all of the numbers
 function generateNumbers(n1, n2){
     let res = []
     for (let num = 1; num <= 100; num++) {
@@ -36,21 +35,9 @@ function generateNumbers(n1, n2){
     }
     return res
 }
-
+//Display all of the numbers
 function displayNumbers(numList) {
 
-    // rows = ""
-
-    // for (let index = 0; index < numList.length; index+=4) {
-    //     templateRow = ""
-    //     for (let j =index; j<index+4;j++) {
-    //         templateRow += `<td>${numList[j]}</td>`         
-    //     }
-    //     newRow =`<tr>${templateRow}</tr>`
-    //     rows += newRow
-    // }
-
-    // document.getElementById("results").innerHTML = rows
     let tableBody = document.getElementById("results");
     let templateRow = document.getElementById("tmpResults")
     tableBody.innerHTML = ""
@@ -75,6 +62,4 @@ function displayNumbers(numList) {
 
         tableBody.appendChild(tableRow)
     }
-
-
 }
